@@ -1,0 +1,6 @@
+org\mule\extension\circuit\breaker\internal\CircuitBreakerOperations.class
+org\mule\extension\circuit\breaker\internal\exceptions\OpenedCicuitException.class
+org\mule\extension\circuit\breaker\internal\CircuitBreakerExtension.class
+org\mule\extension\circuit\breaker\internal\CircuitBreakerConfiguration.class
+META-INF\circuit-breaker-extension-descriptions.xml
+org\mule\extension\circuit\breaker\internal\CircuitObjectStoreHelper.class

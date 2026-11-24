@@ -1,0 +1,132 @@
+
+
+= Circuit-breaker Module Connector Reference
+
+
+This is the main class of an extension, is the entry point from which configurations, connection providers, operations and sources are going to be declared.
+
+
+
+== Configurations
+---
+[[Config]]
+=== Config
+
+
+Default configuration
+
+
+==== Parameters
+
+[%header%autowidth.spread]
+|===
+| Name | Type | Description | Default Value | Required
+|Name | String | The name for this configuration. Connectors reference the configuration with this name. | | *x*{nbsp}
+| Threshold a| Number |  |  | *x*{nbsp}
+| Timeout a| Number |  |  | *x*{nbsp}
+| Breaker Name a| String |  |  | *x*{nbsp}
+| Name a| String |  The identifier of this element used to reference it in other components |  | *x*{nbsp}
+| Expiration Policy a| <<ExpirationPolicy>> |  Configures the minimum amount of time that a dynamic configuration instance can remain idle before the runtime considers it eligible for expiration. This does not mean that the platform will expire the instance at the exact moment that it becomes eligible. The runtime will actually purge the instances when it sees it fit. |  | {nbsp}
+|===
+
+
+==== Associated Operations
+* <<Filter>> {nbsp}
+* <<RecordFailure>> {nbsp}
+
+
+
+== Operations
+
+[[Filter]]
+== Filter
+`<circuit-breaker:filter>`
+
+
+Filter the message if the failures' threshold has been met. In other words Circuit Breaker has been opened and no new messages are allowed to pass further.
+
+
+=== Parameters
+
+[%header%autowidth.spread]
+|===
+| Name | Type | Description | Default Value | Required
+| Configuration | String | The name of the configuration to use. | | *x*{nbsp}
+| Config Ref a| ConfigurationProvider |  The name of the configuration to be used to execute this component |  | *x*{nbsp}
+| Error Mappings a| Array of <<ErrorMapping>> |  Set of error mappings |  | {nbsp}
+|===
+
+
+=== For Configurations
+
+* <<Config>> {nbsp}
+
+
+
+[[RecordFailure]]
+== Record Failure
+`<circuit-breaker:record-failure>`
+
+
+Record one more failure by saving it in Object Store
+
+
+=== Parameters
+
+[%header%autowidth.spread]
+|===
+| Name | Type | Description | Default Value | Required
+| Configuration | String | The name of the configuration to use. | | *x*{nbsp}
+| Config Ref a| ConfigurationProvider |  The name of the configuration to be used to execute this component |  | *x*{nbsp}
+| Error Mappings a| Array of <<ErrorMapping>> |  Set of error mappings |  | {nbsp}
+|===
+
+
+=== For Configurations
+
+* <<Config>> {nbsp}
+
+
+
+
+== Types
+[[ExpirationPolicy]]
+=== Expiration Policy
+
+[cols=".^20%,.^25%,.^30%,.^15%,.^10%", options="header"]
+|======================
+| Field | Type | Description | Default Value | Required
+| Max Idle Time a| Number | A scalar time value for the maximum amount of time a dynamic configuration instance should be allowed to be idle before it's considered eligible for expiration |  | 
+| Time Unit a| Enumeration, one of:
+
+** NANOSECONDS
+** MICROSECONDS
+** MILLISECONDS
+** SECONDS
+** MINUTES
+** HOURS
+** DAYS | A time unit that qualifies the maxIdleTime attribute |  | 
+|======================
+
+[[ErrorMapping]]
+=== Error Mapping
+
+[cols=".^20%,.^25%,.^30%,.^15%,.^10%", options="header"]
+|======================
+| Field | Type | Description | Default Value | Required
+| Source a| Enumeration, one of:
+
+** ANY
+** REDELIVERY_EXHAUSTED
+** TRANSFORMATION
+** EXPRESSION
+** SECURITY
+** CLIENT_SECURITY
+** SERVER_SECURITY
+** ROUTING
+** CONNECTIVITY
+** RETRY_EXHAUSTED
+** TIMEOUT |  |  | 
+| Target a| String |  |  | x
+|======================
+

@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Created-By: Maven JAR Plugin 3.4.1
+Build-Jdk-Spec: 17
+Specification-Title: Circuit-breaker Extension
+Specification-Version: 1.0
+Specification-Vendor: MuleSoft, Inc.
+Implementation-Title: Circuit-breaker Extension
+Implementation-Version: 1.0.0
+Implementation-Vendor: MuleSoft, Inc.
+Build-Date: 2026-11-21-18:28:24
+Target-Java-Release-Version: 17
+

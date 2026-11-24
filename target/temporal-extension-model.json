@@ -1,0 +1,879 @@
+{
+  "name": "Circuit-breaker",
+  "description": "This is the main class of an extension, is the entry point from which configurations, connection providers, operations and sources are going to be declared.",
+  "version": "1.0.0",
+  "vendor": "Prof-IT Patryk Bandurski",
+  "supportedJavaVersions": [
+    "17"
+  ],
+  "category": "COMMUNITY",
+  "xmlDsl": {
+    "prefix": "circuit-breaker",
+    "namespace": "http://www.mulesoft.org/schema/mule/circuit-breaker",
+    "schemaLocation": "http://www.mulesoft.org/schema/mule/circuit-breaker/current/mule-circuit-breaker.xsd",
+    "schemaVersion": "1.0.0",
+    "xsdFileName": "mule-circuit-breaker.xsd"
+  },
+  "resources": [],
+  "subTypes": [],
+  "privilegedPackages": [],
+  "privilegedArtifacts": [],
+  "externalLibraries": [],
+  "importedTypes": [],
+  "configurations": [
+    {
+      "stereotype": {
+        "type": "CONFIG",
+        "namespace": "CIRCUIT-BREAKER",
+        "parent": {
+          "type": "MODULE_CONFIG",
+          "namespace": "MULE"
+        }
+      },
+      "parameterGroupModels": [
+        {
+          "parameters": [
+            {
+              "type": {
+                "format": "java",
+                "type": "Number",
+                "annotations": {
+                  "classInformation": {
+                    "classname": "int",
+                    "hasDefaultConstructor": false,
+                    "isInterface": false,
+                    "isInstantiable": false,
+                    "isAbstract": true,
+                    "isFinal": true,
+                    "implementedInterfaces": [],
+                    "parent": "",
+                    "genericTypes": [],
+                    "isMap": false
+                  },
+                  "int": {}
+                }
+              },
+              "hasDynamicType": false,
+              "required": true,
+              "isConfigOverride": false,
+              "isComponentId": false,
+              "fieldValueProviderModels": [],
+              "expressionSupport": "SUPPORTED",
+              "role": "BEHAVIOUR",
+              "dslConfiguration": {
+                "allowsInlineDefinition": false,
+                "allowsReferences": false,
+                "allowTopLevelDefinition": false
+              },
+              "layoutModel": {
+                "password": false,
+                "text": false,
+                "query": false,
+                "order": 1
+              },
+              "allowedStereotypeModels": [],
+              "semanticTerms": [],
+              "name": "threshold",
+              "description": "",
+              "modelProperties": {}
+            },
+            {
+              "type": {
+                "format": "java",
+                "type": "Number",
+                "annotations": {
+                  "classInformation": {
+                    "classname": "int",
+                    "hasDefaultConstructor": false,
+                    "isInterface": false,
+                    "isInstantiable": false,
+                    "isAbstract": true,
+                    "isFinal": true,
+                    "implementedInterfaces": [],
+                    "parent": "",
+                    "genericTypes": [],
+                    "isMap": false
+                  },
+                  "int": {}
+                }
+              },
+              "hasDynamicType": false,
+              "required": true,
+              "isConfigOverride": false,
+              "isComponentId": false,
+              "fieldValueProviderModels": [],
+              "expressionSupport": "SUPPORTED",
+              "role": "BEHAVIOUR",
+              "dslConfiguration": {
+                "allowsInlineDefinition": false,
+                "allowsReferences": false,
+                "allowTopLevelDefinition": false
+              },
+              "layoutModel": {
+                "password": false,
+                "text": false,
+                "query": false,
+                "order": 2
+              },
+              "allowedStereotypeModels": [],
+              "semanticTerms": [],
+              "name": "timeout",
+              "description": "",
+              "modelProperties": {}
+            },
+            {
+              "type": {
+                "format": "java",
+                "type": "String"
+              },
+              "hasDynamicType": false,
+              "required": true,
+              "isConfigOverride": false,
+              "isComponentId": false,
+              "fieldValueProviderModels": [],
+              "expressionSupport": "SUPPORTED",
+              "role": "BEHAVIOUR",
+              "dslConfiguration": {
+                "allowsInlineDefinition": false,
+                "allowsReferences": false,
+                "allowTopLevelDefinition": false
+              },
+              "layoutModel": {
+                "password": false,
+                "text": false,
+                "query": false,
+                "order": 3
+              },
+              "allowedStereotypeModels": [],
+              "semanticTerms": [],
+              "name": "breakerName",
+              "description": "",
+              "modelProperties": {}
+            },
+            {
+              "type": {
+                "format": "java",
+                "type": "String"
+              },
+              "hasDynamicType": false,
+              "required": true,
+              "isConfigOverride": false,
+              "isComponentId": true,
+              "fieldValueProviderModels": [],
+              "expressionSupport": "NOT_SUPPORTED",
+              "role": "BEHAVIOUR",
+              "dslConfiguration": {
+                "allowsInlineDefinition": false,
+                "allowsReferences": false,
+                "allowTopLevelDefinition": false
+              },
+              "layoutModel": {
+                "password": false,
+                "text": false,
+                "query": false,
+                "order": 5
+              },
+              "allowedStereotypeModels": [],
+              "semanticTerms": [],
+              "name": "name",
+              "description": "The identifier of this element used to reference it in other components",
+              "modelProperties": {}
+            },
+            {
+              "type": {
+                "format": "java",
+                "type": "Object",
+                "annotations": {
+                  "typeId": "org.mule.runtime.extension.api.runtime.ExpirationPolicy",
+                  "classInformation": {
+                    "classname": "org.mule.runtime.extension.api.runtime.ExpirationPolicy",
+                    "hasDefaultConstructor": false,
+                    "isInterface": true,
+                    "isInstantiable": false,
+                    "isAbstract": true,
+                    "isFinal": false,
+                    "implementedInterfaces": [],
+                    "parent": "",
+                    "genericTypes": [],
+                    "isMap": false
+                  },
+                  "infrastructureType": {},
+                  "description": {
+                    "value": "Configures the minimum amount of time that a dynamic configuration instance can remain idle before the runtime considers it eligible for expiration. This does not mean that the platform will expire the instance at the exact moment that it becomes eligible. The runtime will actually purge the instances when it sees it fit."
+                  },
+                  "typeDsl": {
+                    "allowInlineDefinition": true,
+                    "allowTopLevelDefinition": false
+                  }
+                },
+                "fields": [
+                  {
+                    "key": {
+                      "name": "maxIdleTime"
+                    },
+                    "model": {
+                      "type": "Number",
+                      "annotations": {
+                        "int": {},
+                        "classInformation": {
+                          "classname": "java.lang.Long",
+                          "hasDefaultConstructor": false,
+                          "isInterface": false,
+                          "isInstantiable": false,
+                          "isAbstract": false,
+                          "isFinal": true,
+                          "implementedInterfaces": [],
+                          "parent": "java.lang.Number",
+                          "genericTypes": [],
+                          "isMap": false
+                        },
+                        "default": "5"
+                      }
+                    },
+                    "annotations": {
+                      "description": {
+                        "value": "A scalar time value for the maximum amount of time a dynamic configuration instance should be allowed to be idle before it\u0027s considered eligible for expiration"
+                      },
+                      "expressionSupport": {
+                        "value": "NOT_SUPPORTED"
+                      }
+                    }
+                  },
+                  {
+                    "key": {
+                      "name": "timeUnit"
+                    },
+                    "model": {
+                      "type": "String",
+                      "annotations": {
+                        "enum": {
+                          "type": "[Ljava.lang.String;",
+                          "values": [
+                            "NANOSECONDS",
+                            "MICROSECONDS",
+                            "MILLISECONDS",
+                            "SECONDS",
+                            "MINUTES",
+                            "HOURS",
+                            "DAYS"
+                          ]
+                        },
+                        "default": "MINUTES"
+                      }
+                    },
+                    "annotations": {
+                      "description": {
+                        "value": "A time unit that qualifies the maxIdleTime attribute"
+                      },
+                      "expressionSupport": {
+                        "value": "NOT_SUPPORTED"
+                      }
+                    }
+                  }
+                ]
+              },
+              "hasDynamicType": false,
+              "required": false,
+              "isConfigOverride": false,
+              "isComponentId": false,
+              "fieldValueProviderModels": [],
+              "expressionSupport": "NOT_SUPPORTED",
+              "role": "BEHAVIOUR",
+              "dslConfiguration": {
+                "allowsInlineDefinition": true,
+                "allowsReferences": false,
+                "allowTopLevelDefinition": false
+              },
+              "layoutModel": {
+                "password": false,
+                "text": false,
+                "query": false,
+                "order": 4,
+                "tabName": "Advanced"
+              },
+              "allowedStereotypeModels": [],
+              "semanticTerms": [],
+              "name": "expirationPolicy",
+              "description": "Configures the minimum amount of time that a dynamic configuration instance can remain idle before the runtime considers it eligible for expiration. This does not mean that the platform will expire the instance at the exact moment that it becomes eligible. The runtime will actually purge the instances when it sees it fit.",
+              "modelProperties": {
+                "org.mule.runtime.extension.api.property.QNameModelProperty": {
+                  "value": {
+                    "namespaceURI": "http://www.mulesoft.org/schema/mule/core",
+                    "localPart": "expiration-policy",
+                    "prefix": "mule"
+                  }
+                },
+                "org.mule.runtime.extension.api.property.InfrastructureParameterModelProperty": {
+                  "sequence": 4
+                }
+              }
+            }
+          ],
+          "exclusiveParametersModels": [],
+          "layoutModel": {
+            "password": false,
+            "text": false,
+            "query": false,
+            "order": 1
+          },
+          "showInDsl": false,
+          "name": "General",
+          "description": "",
+          "modelProperties": {}
+        }
+      ],
+      "externalLibraryModels": [],
+      "operations": [
+        {
+          "blocking": true,
+          "executionType": "CPU_LITE",
+          "output": {
+            "type": {
+              "format": "java",
+              "type": "Void"
+            },
+            "hasDynamicType": false,
+            "description": "",
+            "modelProperties": {}
+          },
+          "outputAttributes": {
+            "type": {
+              "format": "java",
+              "type": "Void"
+            },
+            "hasDynamicType": false,
+            "description": "",
+            "modelProperties": {}
+          },
+          "transactional": false,
+          "requiresConnection": false,
+          "supportsStreaming": false,
+          "notifications": [],
+          "nestedComponents": [],
+          "errors": [],
+          "semanticTerms": [],
+          "visibility": "PUBLIC",
+          "stereotype": {
+            "type": "FILTER",
+            "namespace": "CIRCUIT-BREAKER",
+            "parent": {
+              "type": "PROCESSOR",
+              "namespace": "CIRCUIT-BREAKER",
+              "parent": {
+                "type": "PROCESSOR",
+                "namespace": "MULE"
+              }
+            }
+          },
+          "parameterGroupModels": [
+            {
+              "parameters": [
+                {
+                  "type": {
+                    "format": "java",
+                    "type": "Object",
+                    "annotations": {
+                      "typeId": "org.mule.runtime.extension.api.runtime.config.ConfigurationProvider",
+                      "classInformation": {
+                        "classname": "org.mule.runtime.extension.api.runtime.config.ConfigurationProvider",
+                        "hasDefaultConstructor": false,
+                        "isInterface": true,
+                        "isInstantiable": false,
+                        "isAbstract": true,
+                        "isFinal": false,
+                        "implementedInterfaces": [],
+                        "parent": "",
+                        "genericTypes": [],
+                        "isMap": false
+                      }
+                    },
+                    "fields": []
+                  },
+                  "hasDynamicType": false,
+                  "required": true,
+                  "isConfigOverride": false,
+                  "isComponentId": false,
+                  "fieldValueProviderModels": [],
+                  "expressionSupport": "NOT_SUPPORTED",
+                  "role": "BEHAVIOUR",
+                  "dslConfiguration": {
+                    "allowsInlineDefinition": false,
+                    "allowsReferences": true,
+                    "allowTopLevelDefinition": false
+                  },
+                  "layoutModel": {
+                    "password": false,
+                    "text": false,
+                    "query": false,
+                    "order": 2
+                  },
+                  "allowedStereotypeModels": [
+                    {
+                      "type": "CONFIG",
+                      "namespace": "CIRCUIT-BREAKER",
+                      "parent": {
+                        "type": "MODULE_CONFIG",
+                        "namespace": "MULE"
+                      }
+                    }
+                  ],
+                  "semanticTerms": [],
+                  "name": "config-ref",
+                  "description": "The name of the configuration to be used to execute this component",
+                  "modelProperties": {}
+                }
+              ],
+              "exclusiveParametersModels": [],
+              "layoutModel": {
+                "password": false,
+                "text": false,
+                "query": false,
+                "order": 0
+              },
+              "showInDsl": false,
+              "name": "General",
+              "description": "",
+              "modelProperties": {}
+            },
+            {
+              "parameters": [
+                {
+                  "type": {
+                    "format": "java",
+                    "type": "Array",
+                    "annotations": {
+                      "infrastructureType": {},
+                      "description": {
+                        "value": "Determines that an error thrown by this operation should be mapped to another"
+                      },
+                      "typeDsl": {
+                        "allowInlineDefinition": true,
+                        "allowTopLevelDefinition": false
+                      }
+                    },
+                    "item": {
+                      "type": "Object",
+                      "annotations": {
+                        "typeId": "errorMapping",
+                        "infrastructureType": {}
+                      },
+                      "fields": [
+                        {
+                          "key": {
+                            "name": "source"
+                          },
+                          "model": {
+                            "format": {
+                              "id": "text",
+                              "label": "Text",
+                              "validMimeTypes": [
+                                "text/plain"
+                              ]
+                            },
+                            "type": "String",
+                            "annotations": {
+                              "typeId": "errorTypeMatcher",
+                              "enum": {
+                                "type": "[Ljava.lang.String;",
+                                "values": [
+                                  "ANY",
+                                  "REDELIVERY_EXHAUSTED",
+                                  "TRANSFORMATION",
+                                  "EXPRESSION",
+                                  "SECURITY",
+                                  "CLIENT_SECURITY",
+                                  "SERVER_SECURITY",
+                                  "ROUTING",
+                                  "CONNECTIVITY",
+                                  "RETRY_EXHAUSTED",
+                                  "TIMEOUT"
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "key": {
+                            "name": "target",
+                            "required": "true"
+                          },
+                          "model": {
+                            "format": {
+                              "id": "text",
+                              "label": "Text",
+                              "validMimeTypes": [
+                                "text/plain"
+                              ]
+                            },
+                            "type": "String",
+                            "annotations": {
+                              "typeId": "errorTypeDefinition"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "hasDynamicType": false,
+                  "required": false,
+                  "isConfigOverride": false,
+                  "isComponentId": false,
+                  "fieldValueProviderModels": [],
+                  "expressionSupport": "NOT_SUPPORTED",
+                  "role": "BEHAVIOUR",
+                  "dslConfiguration": {
+                    "allowsInlineDefinition": true,
+                    "allowsReferences": false,
+                    "allowTopLevelDefinition": false
+                  },
+                  "layoutModel": {
+                    "password": false,
+                    "text": false,
+                    "query": false,
+                    "order": 1,
+                    "tabName": "Error Mapping"
+                  },
+                  "allowedStereotypeModels": [],
+                  "semanticTerms": [],
+                  "name": "errorMappings",
+                  "description": "Set of error mappings",
+                  "modelProperties": {
+                    "org.mule.runtime.extension.api.property.QNameModelProperty": {
+                      "value": {
+                        "namespaceURI": "http://www.mulesoft.org/schema/mule/core",
+                        "localPart": "error-mappings",
+                        "prefix": "mule"
+                      }
+                    },
+                    "sinceMuleVersion": {
+                      "version": "4.4.0"
+                    },
+                    "org.mule.runtime.extension.api.property.InfrastructureParameterModelProperty": {
+                      "sequence": 12
+                    }
+                  }
+                }
+              ],
+              "exclusiveParametersModels": [],
+              "layoutModel": {
+                "password": false,
+                "text": false,
+                "query": false,
+                "order": 1
+              },
+              "showInDsl": false,
+              "name": "Error Mappings",
+              "description": "",
+              "modelProperties": {}
+            }
+          ],
+          "name": "filter",
+          "description": "Filter the message if the failures\u0027 threshold has been met. In other words Circuit Breaker has been opened and no new messages are allowed to pass further.",
+          "modelProperties": {},
+          "kind": "operation"
+        },
+        {
+          "blocking": true,
+          "executionType": "CPU_LITE",
+          "output": {
+            "type": {
+              "format": "java",
+              "type": "Void"
+            },
+            "hasDynamicType": false,
+            "description": "",
+            "modelProperties": {}
+          },
+          "outputAttributes": {
+            "type": {
+              "format": "java",
+              "type": "Void"
+            },
+            "hasDynamicType": false,
+            "description": "",
+            "modelProperties": {}
+          },
+          "transactional": false,
+          "requiresConnection": false,
+          "supportsStreaming": false,
+          "notifications": [],
+          "nestedComponents": [],
+          "errors": [],
+          "semanticTerms": [],
+          "visibility": "PUBLIC",
+          "stereotype": {
+            "type": "RECORD_FAILURE",
+            "namespace": "CIRCUIT-BREAKER",
+            "parent": {
+              "type": "PROCESSOR",
+              "namespace": "CIRCUIT-BREAKER",
+              "parent": {
+                "type": "PROCESSOR",
+                "namespace": "MULE"
+              }
+            }
+          },
+          "parameterGroupModels": [
+            {
+              "parameters": [
+                {
+                  "type": {
+                    "format": "java",
+                    "type": "Object",
+                    "annotations": {
+                      "typeId": "org.mule.runtime.extension.api.runtime.config.ConfigurationProvider",
+                      "classInformation": {
+                        "classname": "org.mule.runtime.extension.api.runtime.config.ConfigurationProvider",
+                        "hasDefaultConstructor": false,
+                        "isInterface": true,
+                        "isInstantiable": false,
+                        "isAbstract": true,
+                        "isFinal": false,
+                        "implementedInterfaces": [],
+                        "parent": "",
+                        "genericTypes": [],
+                        "isMap": false
+                      }
+                    },
+                    "fields": []
+                  },
+                  "hasDynamicType": false,
+                  "required": true,
+                  "isConfigOverride": false,
+                  "isComponentId": false,
+                  "fieldValueProviderModels": [],
+                  "expressionSupport": "NOT_SUPPORTED",
+                  "role": "BEHAVIOUR",
+                  "dslConfiguration": {
+                    "allowsInlineDefinition": false,
+                    "allowsReferences": true,
+                    "allowTopLevelDefinition": false
+                  },
+                  "layoutModel": {
+                    "password": false,
+                    "text": false,
+                    "query": false,
+                    "order": 2
+                  },
+                  "allowedStereotypeModels": [
+                    {
+                      "type": "CONFIG",
+                      "namespace": "CIRCUIT-BREAKER",
+                      "parent": {
+                        "type": "MODULE_CONFIG",
+                        "namespace": "MULE"
+                      }
+                    }
+                  ],
+                  "semanticTerms": [],
+                  "name": "config-ref",
+                  "description": "The name of the configuration to be used to execute this component",
+                  "modelProperties": {}
+                }
+              ],
+              "exclusiveParametersModels": [],
+              "layoutModel": {
+                "password": false,
+                "text": false,
+                "query": false,
+                "order": 0
+              },
+              "showInDsl": false,
+              "name": "General",
+              "description": "",
+              "modelProperties": {}
+            },
+            {
+              "parameters": [
+                {
+                  "type": {
+                    "format": "java",
+                    "type": "Array",
+                    "annotations": {
+                      "infrastructureType": {},
+                      "description": {
+                        "value": "Determines that an error thrown by this operation should be mapped to another"
+                      },
+                      "typeDsl": {
+                        "allowInlineDefinition": true,
+                        "allowTopLevelDefinition": false
+                      }
+                    },
+                    "item": {
+                      "type": "Object",
+                      "annotations": {
+                        "typeId": "errorMapping",
+                        "infrastructureType": {}
+                      },
+                      "fields": [
+                        {
+                          "key": {
+                            "name": "source"
+                          },
+                          "model": {
+                            "format": {
+                              "id": "text",
+                              "label": "Text",
+                              "validMimeTypes": [
+                                "text/plain"
+                              ]
+                            },
+                            "type": "String",
+                            "annotations": {
+                              "typeId": "errorTypeMatcher",
+                              "enum": {
+                                "type": "[Ljava.lang.String;",
+                                "values": [
+                                  "ANY",
+                                  "REDELIVERY_EXHAUSTED",
+                                  "TRANSFORMATION",
+                                  "EXPRESSION",
+                                  "SECURITY",
+                                  "CLIENT_SECURITY",
+                                  "SERVER_SECURITY",
+                                  "ROUTING",
+                                  "CONNECTIVITY",
+                                  "RETRY_EXHAUSTED",
+                                  "TIMEOUT"
+                                ]
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "key": {
+                            "name": "target",
+                            "required": "true"
+                          },
+                          "model": {
+                            "format": {
+                              "id": "text",
+                              "label": "Text",
+                              "validMimeTypes": [
+                                "text/plain"
+                              ]
+                            },
+                            "type": "String",
+                            "annotations": {
+                              "typeId": "errorTypeDefinition"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "hasDynamicType": false,
+                  "required": false,
+                  "isConfigOverride": false,
+                  "isComponentId": false,
+                  "fieldValueProviderModels": [],
+                  "expressionSupport": "NOT_SUPPORTED",
+                  "role": "BEHAVIOUR",
+                  "dslConfiguration": {
+                    "allowsInlineDefinition": true,
+                    "allowsReferences": false,
+                    "allowTopLevelDefinition": false
+                  },
+                  "layoutModel": {
+                    "password": false,
+                    "text": false,
+                    "query": false,
+                    "order": 1,
+                    "tabName": "Error Mapping"
+                  },
+                  "allowedStereotypeModels": [],
+                  "semanticTerms": [],
+                  "name": "errorMappings",
+                  "description": "Set of error mappings",
+                  "modelProperties": {
+                    "org.mule.runtime.extension.api.property.QNameModelProperty": {
+                      "value": {
+                        "namespaceURI": "http://www.mulesoft.org/schema/mule/core",
+                        "localPart": "error-mappings",
+                        "prefix": "mule"
+                      }
+                    },
+                    "sinceMuleVersion": {
+                      "version": "4.4.0"
+                    },
+                    "org.mule.runtime.extension.api.property.InfrastructureParameterModelProperty": {
+                      "sequence": 12
+                    }
+                  }
+                }
+              ],
+              "exclusiveParametersModels": [],
+              "layoutModel": {
+                "password": false,
+                "text": false,
+                "query": false,
+                "order": 1
+              },
+              "showInDsl": false,
+              "name": "Error Mappings",
+              "description": "",
+              "modelProperties": {}
+            }
+          ],
+          "name": "recordFailure",
+          "description": "Record one more failure by saving it in Object Store",
+          "modelProperties": {},
+          "kind": "operation"
+        }
+      ],
+      "connectionProviders": [],
+      "messageSources": [],
+      "name": "config",
+      "description": "Default configuration",
+      "modelProperties": {
+        "requiredForMetadata": {
+          "requiredParameters": [
+            "threshold",
+            "timeout",
+            "breakerName",
+            "name"
+          ]
+        }
+      }
+    }
+  ],
+  "operations": [],
+  "functions": [],
+  "constructs": [],
+  "connectionProviders": [],
+  "messageSources": [],
+  "artifactCoordinates": {
+    "artifact id": "circuit-breaker",
+    "group id": "pl.profit-online.extensions",
+    "version": "1.0.0"
+  },
+  "notifications": [],
+  "errors": [
+    {
+      "error": "CIRCUIT-BREAKER:CONNECTIVITY",
+      "parent": "MULE:CONNECTIVITY",
+      "handleable": true
+    },
+    {
+      "error": "MULE:CONNECTIVITY",
+      "parent": "MULE:ANY",
+      "handleable": true
+    },
+    {
+      "error": "MULE:ANY",
+      "handleable": true
+    },
+    {
+      "error": "CIRCUIT-BREAKER:RETRY_EXHAUSTED",
+      "parent": "MULE:RETRY_EXHAUSTED",
+      "handleable": true
+    },
+    {
+      "error": "MULE:RETRY_EXHAUSTED",
+      "parent": "MULE:ANY",
+      "handleable": true
+    }
+  ],
+  "modelProperties": {},
+  "types": []
+}

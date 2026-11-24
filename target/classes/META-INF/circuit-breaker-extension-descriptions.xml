@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<extension-documentation>
+    <configs>
+        <config name="config">
+            <description><![CDATA[Default configuration]]></description>
+            <parameters>
+                <parameter name="threshold">
+                    <description/>
+                </parameter>
+                <parameter name="timeout">
+                    <description/>
+                </parameter>
+                <parameter name="breakerName">
+                    <description/>
+                </parameter>
+                <parameter name="name">
+                    <description><![CDATA[The identifier of this element used to reference it in other components]]></description>
+                </parameter>
+                <parameter name="expirationPolicy">
+                    <description><![CDATA[Configures the minimum amount of time that a dynamic configuration instance can remain idle before the runtime considers it eligible for expiration. This does not mean that the platform will expire the instance at the exact moment that it becomes eligible. The runtime will actually purge the instances when it sees it fit.]]></description>
+                </parameter>
+            </parameters>
+        </config>
+    </configs>
+    <connections/>
+    <extension name="Circuit-breaker">
+        <description><![CDATA[This is the main class of an extension, is the entry point from which configurations, connection providers, operations and sources are going to be declared.]]></description>
+        <parameters/>
+    </extension>
+    <operations>
+        <operation name="filter">
+            <description><![CDATA[Filter the message if the failures' threshold has been met. In other words Circuit Breaker has been opened and no new messages are allowed to pass further.]]></description>
+            <parameters>
+                <parameter name="config-ref">
+                    <description><![CDATA[The name of the configuration to be used to execute this component]]></description>
+                </parameter>
+                <parameter name="errorMappings">
+                    <description><![CDATA[Set of error mappings]]></description>
+                </parameter>
+            </parameters>
+        </operation>
+        <operation name="recordFailure">
+            <description><![CDATA[Record one more failure by saving it in Object Store]]></description>
+            <parameters>
+                <parameter name="config-ref">
+                    <description><![CDATA[The name of the configuration to be used to execute this component]]></description>
+                </parameter>
+                <parameter name="errorMappings">
+                    <description><![CDATA[Set of error mappings]]></description>
+                </parameter>
+            </parameters>
+        </operation>
+    </operations>
+    <sources/>
+    <types/>
+</extension-documentation>
